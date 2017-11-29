@@ -17,7 +17,7 @@ function initMap() {
   bikeLayer.setMap(map);
 }*/
 function initMap() {
-        var directionsDisplay = new google.maps.DirectionsRenderer;
+      var directionsDisplay = new google.maps.DirectionsRenderer;
         var directionsService = new google.maps.DirectionsService;
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 14,

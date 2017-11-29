@@ -8,12 +8,17 @@
     #map {
       height: 100%;
     }
+    #test {
+      height: 300px;
+      width: 100%;
+    }
     html, body {
       height: 100%;
       margin: 0;
       padding: 0;
     }
   </style>
+  <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
   <script src="https://unpkg.com/vue"> </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.2.0/vue-resource.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -54,9 +59,13 @@
       </div>
     </div>
   </div>
-  <script type="text/javascript" src="map.js"></script>
+  <div id="test">
+    <button id="vibe" type="button" class="btn btn-primary" v-on:click="vibe">Vibrate</button>
+  </div>
+  <script type="text/javascript" src="js/map.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAi_n5um0kIDTiFIjB4rfZbkJcy2soICuM&callback=initMap"
   async defer></script>
-  <script type="text/javascript" src="js.js"></script>
+  <script type="text/javascript" src="js/js.js"></script>
+  <script type="text/javascript" src="js/vibrate.js"></script>
 </body>
 </html>
