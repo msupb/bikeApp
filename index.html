@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple Map</title>
+  <meta name="viewport" content="initial-scale=1.0">
+  <meta charset="utf-8">
+  <style>
+    /* Always set the map height explicitly to define the size of the div
+     * element that contains the map. */
+    #map {
+      height: 100%;
+    }
+    /* Optional: Makes the sample page fill the window. */
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+  <script src="https://unpkg.com/vue"> </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.2.0/vue-resource.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+  <div id="wrapper">
+    <div>
+      <div id="map" style="height:500px; width:100%;"></div>
+    </div>
+    <div class="container">
+      <div id="owm">
+        <form>
+          <div class="form-group">
+            <label>City</label>
+            <input type="text" class="form-control"  placeholder="City" v-model="userInput">
+          </div>
+          <button type="button" class="btn btn-primary" v-on:click="loadWeather">Search</button>
+        </form>
+        <table class="table table-bordered">
+          <thead><h2>Open weather map</h2></thead>
+          <tbody>
+            <template v-for="item in weather">
+              <tr class="success">
+                <td> {{ item.body.list[0].name}}</td>
+              </tr>
+              <tr class="success">
+                <td> {{ item.body.list[0].clouds}}</td>
+              </tr>
+              <tr class="success">
+                <td> {{ item.body.list[0].rain}}</td>
+              </tr>
+              <tr class="success">
+                <td> {{ item.body.list[0].snow}}</td>
+              </tr>
+            </template>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <script>
+    var map;
+    var el = document.getElementById('map');
+    var options = {
+      center: {lat: 57.78145, lng: 14.15618},
+      zoom: 12,
+      maxZoom: 4,
+      minZoom: 12
+      mapTypeId: 'roadmap'
+    }
+    function initMap() {
+      map = new google.maps.Map(el, options);
+      var marker = new google.maps.Marker({
+      position: {lat: 57.78145, lng: 14.15618},
+      map: map,
+      animation: google.maps.Animation.BOUNCE,
+      draggable: true
+      });
+    }
+  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAi_n5um0kIDTiFIjB4rfZbkJcy2soICuM&callback=initMap"
+  async defer></script>
+  <script type="text/javascript" src="js.js"></script>
+</body>
+</html>
