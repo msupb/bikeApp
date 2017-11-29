@@ -1,16 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Simple Map</title>
+  <title>Biking application</title>
   <meta name="viewport" content="initial-scale=1.0">
   <meta charset="utf-8">
   <style>
-    /* Always set the map height explicitly to define the size of the div
-     * element that contains the map. */
     #map {
       height: 100%;
     }
-    /* Optional: Makes the sample page fill the window. */
     html, body {
       height: 100%;
       margin: 0;
@@ -40,16 +37,16 @@
           <tbody>
             <template v-for="item in weather">
               <tr class="success">
-                <td> {{ item.body.list[0].name}}</td>
+                <td> {{ item.body.list[0].name }}</td>
               </tr>
               <tr class="success">
-                <td> {{ item.body.list[0].clouds}}</td>
+                <td> {{ item.body.list[0].clouds }}</td>
               </tr>
               <tr class="success">
-                <td> {{ item.body.list[0].rain}}</td>
+                <td> {{ item.body.list[0].rain }}</td>
               </tr>
               <tr class="success">
-                <td> {{ item.body.list[0].snow}}</td>
+                <td> {{ item.body.list[0].snow }}</td>
               </tr>
             </template>
           </tbody>
@@ -57,26 +54,7 @@
       </div>
     </div>
   </div>
-  <script>
-    var map;
-    var el = document.getElementById('map');
-    var options = {
-      center: {lat: 57.78145, lng: 14.15618},
-      zoom: 12,
-      maxZoom: 4,
-      minZoom: 12
-      mapTypeId: 'roadmap'
-    }
-    function initMap() {
-      map = new google.maps.Map(el, options);
-      var marker = new google.maps.Marker({
-      position: {lat: 57.78145, lng: 14.15618},
-      map: map,
-      animation: google.maps.Animation.BOUNCE,
-      draggable: true
-      });
-    }
-  </script>
+  <script type="text/javascript" src="map.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAi_n5um0kIDTiFIjB4rfZbkJcy2soICuM&callback=initMap"
   async defer></script>
   <script type="text/javascript" src="js.js"></script>
