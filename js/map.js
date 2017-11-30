@@ -96,7 +96,27 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, origin, 
         });
       }
 
+<<<<<<< HEAD
 /*
       var origin = {lat: 57.78145, lng: 14.15618};
       var destination = {lat: 57.857024, lng: 14.126145};
 */
+=======
+if (navigator.geolocation) {
+    console.log('Geolocation is supported!');
+}
+else {
+    console.log('Geolocation is not supported for this Browser/OS.');
+}
+
+window.onload = function() {
+    var startPos;
+    var geoSuccess = function(position) {
+        startPos = position;
+        document.getElementById('startLat').innerHTML = startPos.coords.latitude;
+        document.getElementById('startLon').innerHTML = startPos.coords.longitude;
+
+    };
+    navigator.geolocation.getCurrentPosition(geoSuccess);
+};
+>>>>>>> 1cb19c054acc5120b3549862e5e31c7ac2dbd8e3
