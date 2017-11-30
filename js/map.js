@@ -25,9 +25,12 @@ var geoSuccess = function(position) {
 	startPos = position;
 	a = startPos.coords.latitude;
 	b = startPos.coords.longitude;
+	console.log(a + ', ' + b);
 };
-navigator.geolocation.getCurrentPosition(geoSuccess);
-
+function getLoc() {
+	navigator.geolocation.getCurrentPosition(geoSuccess);
+}
+//navigator.geolocation.getCurrentPosition(geoSuccess);
 function initMap() {
 		var directionsDisplay = new google.maps.DirectionsRenderer;
     var directionsService = new google.maps.DirectionsService;
@@ -53,32 +56,22 @@ function initMap() {
 				console.log( endLat + ', ' + endLng );
 		});
 
-		/*var origin = {
+		var origin = {
 			lat: parseFloat(a),
 			lng: parseFloat(b)
 		};
 		var destination = {
 			lat: parseFloat(endLat),
 			lng: parseFloat(endLng)
-		};*/
+		};
 
 		var bikeLayer = new google.maps.BicyclingLayer();
 		bikeLayer.setMap(map);
+
+		calculateAndDisplayRoute(directionsService, directionsDisplay, origin, destination);
 }
 
-function calcRoute() {
-	var directionsDisplay = new google.maps.DirectionsRenderer;
-	var directionsService = new google.maps.DirectionsService;
-	var origin = {
-		lat: parseFloat(a),
-		lng: parseFloat(b)
-	};
-	var destination = {
-		lat: parseFloat(endLat),
-		lng: parseFloat(endLng)
-	};
-	calculateAndDisplayRoute(directionsService, directionsDisplay, origin, destination);
-}
+
 
 function calculateAndDisplayRoute(directionsService, directionsDisplay, origin, destination) {
     var selectedMode = 'BICYCLING';
@@ -89,34 +82,13 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, origin, 
         }, function(response, status) {
           if (status == 'OK') {
             directionsDisplay.setDirections(response);
-						alert('hello');
           } else {
             //window.alert('Directions request failed due to ' + status);
           }
         });
       }
 
-<<<<<<< HEAD
 /*
       var origin = {lat: 57.78145, lng: 14.15618};
       var destination = {lat: 57.857024, lng: 14.126145};
 */
-=======
-if (navigator.geolocation) {
-    console.log('Geolocation is supported!');
-}
-else {
-    console.log('Geolocation is not supported for this Browser/OS.');
-}
-
-window.onload = function() {
-    var startPos;
-    var geoSuccess = function(position) {
-        startPos = position;
-        document.getElementById('startLat').innerHTML = startPos.coords.latitude;
-        document.getElementById('startLon').innerHTML = startPos.coords.longitude;
-
-    };
-    navigator.geolocation.getCurrentPosition(geoSuccess);
-};
->>>>>>> 1cb19c054acc5120b3549862e5e31c7ac2dbd8e3

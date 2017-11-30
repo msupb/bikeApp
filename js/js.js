@@ -18,8 +18,6 @@ document.addEventListener('deviceready', function(){
     }
   });
 
-
-
   var owm = new Vue({
     el: '#owm',
     data: {
