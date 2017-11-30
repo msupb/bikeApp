@@ -36,8 +36,8 @@ document.addEventListener('deviceready', function(){
 
           if(this.userInput.length > 3) {
             this.$http.get('http://api.openweathermap.org/data/2.5/find?q=' + this.userInput + this.apiKey).then((data) => {
-              //this.weather = data;
-              this.weather.push(data);
+              this.weather = data;
+              //this.weather.push(data);
               console.log(this.weather);
             }); //Why does this return data using the .then promise while the above http call with the callback doesnt
           }
