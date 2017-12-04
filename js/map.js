@@ -1,21 +1,3 @@
-/*var map;
-var el = document.getElementById('map');
-var options = {
-  center: {lat: 57.78145, lng: 14.15618},
-  zoom: 14,
-  mapTypeId: 'roadmap'
-}
-function initMap() {
-  map = new google.maps.Map(el, options);
-  var marker = new google.maps.Marker({
-  position: {lat: 57.78145, lng: 14.15618},
-  map: map,
-  animation: google.maps.Animation.BOUNCE,
-  draggable: true
-  });
-  var bikeLayer = new google.maps.BicyclingLayer();
-  bikeLayer.setMap(map);
-}*/
 var a;
 var b;
 var endLat;

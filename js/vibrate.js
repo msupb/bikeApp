@@ -1,4 +1,15 @@
-document.addEventListener("deviceready", onDeviceReady, false);
-function onDeviceReady() {
-    navigator.vibrate(3000);
-}
+document.addEventListener('deviceready', function(){
+  var vibe = new Vue({
+    el: '#vibe',
+    data: {
+    },
+    methods: {
+      vibe: function() {
+        navigator.vibrate([10000]);
+      }
+    },
+    mounted: function() {
+
+    }
+  });
+});

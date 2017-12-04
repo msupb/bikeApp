@@ -38,23 +38,22 @@
             <input type="text" class="form-control"  placeholder="City" v-model="userInput">
           </div>
           <button type="button" class="btn btn-primary" v-on:click="loadWeather">Search</button>
-		      <button id="vibe" type="button" class="btn btn-primary" v-on:click="vibe">Vibrate</button>
         </form>
         <table class="table table-bordered">
           <thead><h2>Open weather map</h2></thead>
           <tbody>
             <template v-for="item in weather">
               <tr class="success">
-                <td> {{ item.body.list[0].name }}</td>
+                <td> {{ item }}</td>
               </tr>
               <tr class="success">
-                <td> {{ item.body.list[0].clouds }}</td>
+                <td> {{ }}</td>
               </tr>
               <tr class="success">
-                <td> {{ item.body.list[0].rain }}</td>
+                <td> {{ }}</td>
               </tr>
               <tr class="success">
-                <td> {{ item.body.list[0].snow }}</td>
+                <td> {{ }}</td>
               </tr>
             </template>
           </tbody>
@@ -62,9 +61,14 @@
       </div>
     </div>
   </div>
+  <div>
+    <button id="vibe" type="button" class="btn btn-primary" v-on:click="vibe">Vibrate</button>
+  </div>
   <script type="text/javascript" src="js/map.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAi_n5um0kIDTiFIjB4rfZbkJcy2soICuM&callback=initMap"
   async defer></script>
   <script type="text/javascript" src="js/js.js"></script>
+  <script type="text/javascript" src="cordova.js"></script>
+  <script type="text/javascript" src="js/vibrate.js"></script>
 </body>
 </html>
