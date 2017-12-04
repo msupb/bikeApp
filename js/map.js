@@ -1,3 +1,4 @@
+
 var a;
 var b;
 var endLat;
@@ -18,7 +19,7 @@ function initMap() {
     var directionsService = new google.maps.DirectionsService;
     var map = new google.maps.Map(document.getElementById('map'), {
       zoom: 14,
-      center: {lat: 57.78145, lng: 14.15618}
+			center: {lat: 57.78145, lng: 14.15618}
     });
 
 		var marker = new google.maps.Marker({
@@ -38,6 +39,23 @@ function initMap() {
 				console.log( endLat + ', ' + endLng );
 		});
 
+		var markerTwo = new google.maps.Marker({
+		  position: {lat: 57.783737959987896, lng: 14.146395301513621},
+		  map: map,
+		  animation: google.maps.Animation.BOUNCE,
+		  draggable: true
+	  });
+
+		var winAlert = new google.maps.InfoWindow({
+			content: "Traffic jam at this location"
+		});
+
+			google.maps.event.addListener(markerTwo, 'click', function(){
+				winAlert.open(map, markerTwo);
+				navigator.vibrate(5000);
+			});
+
+
 		var origin = {
 			lat: parseFloat(a),
 			lng: parseFloat(b)
@@ -53,24 +71,17 @@ function initMap() {
 		calculateAndDisplayRoute(directionsService, directionsDisplay, origin, destination);
 }
 
-
-
 function calculateAndDisplayRoute(directionsService, directionsDisplay, origin, destination) {
     var selectedMode = 'BICYCLING';
-        directionsService.route({
-          origin,
-          destination,
-          travelMode: google.maps.TravelMode[selectedMode]
-        }, function(response, status) {
+    directionsService.route({
+      origin,
+      destination,
+      travelMode: google.maps.TravelMode[selectedMode]
+      }, function(response, status) {
           if (status == 'OK') {
             directionsDisplay.setDirections(response);
           } else {
             //window.alert('Directions request failed due to ' + status);
           }
-        });
-      }
-
-/*
-      var origin = {lat: 57.78145, lng: 14.15618};
-      var destination = {lat: 57.857024, lng: 14.126145};
-*/
+      });
+}
