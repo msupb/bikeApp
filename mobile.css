@@ -1,0 +1,31 @@
+img {
+  height: 50px;
+  width: 50px;
+  margin: auto;
+  display: inline-block;
+}
+
+button {
+  height: 70px;
+  width: 150px;
+}
+
+#weather-icon {
+  height: 50px;
+  width: 70px;
+}
+
+#loc-buttons button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#info-route button {
+  margin: 0;
+}
+
+#weather-button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

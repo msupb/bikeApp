@@ -1,9 +1,13 @@
 Vue.use(VueResource);
+function test() {
+  console.log(a);
+  console.log(b);
+}
 var owm = new Vue({
   el: '#owm',
   data: {
     apiKey: "&type=like&appid=766b78c39446a8fa6313c3b7b2063ade",
-    city: "stockholm",
+    city: "Jonkoping",
     weather: []
   },
   methods: {
@@ -20,4 +24,12 @@ var owm = new Vue({
   mounted: function () {
     this.loadWeather();
   }
+});
+
+$("#menu-button").click(function(){
+  $(this).toggleClass("active");
+  $("#line-1").toggleClass("active");
+  $("#line-2").toggleClass("active");
+  $("#line-3").toggleClass("active");
+  $("#menu").slideToggle("slow");
 });

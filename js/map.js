@@ -1,9 +1,13 @@
-
 var a;
 var b;
 var endLat;
 var endLng;
 var startPos;
+document.addEventListener("deviceready", getLoc, false);
+$(document).ready(function(position) {
+    getLoc();
+});
+
 var geoSuccess = function(position) {
 	startPos = position;
 	a = startPos.coords.latitude;
@@ -13,7 +17,7 @@ var geoSuccess = function(position) {
 function getLoc() {
 	navigator.geolocation.getCurrentPosition(geoSuccess);
 }
-//navigator.geolocation.getCurrentPosition(geoSuccess);
+
 function initMap() {
 		var directionsDisplay = new google.maps.DirectionsRenderer;
     var directionsService = new google.maps.DirectionsService;
@@ -26,7 +30,8 @@ function initMap() {
 		  position: {lat: 57.78145, lng: 14.15618},
 		  map: map,
 		  animation: google.maps.Animation.BOUNCE,
-		  draggable: true
+		  draggable: true,
+			icon: 'img/destination.png'
 	  });
 
     directionsDisplay.setMap(map);
@@ -43,17 +48,18 @@ function initMap() {
 		  position: {lat: 57.783737959987896, lng: 14.146395301513621},
 		  map: map,
 		  animation: google.maps.Animation.BOUNCE,
-		  draggable: true
+		  draggable: true,
+			icon: 'img/accident.png'
 	  });
 
 		var winAlert = new google.maps.InfoWindow({
 			content: "Traffic jam at this location"
 		});
 
-			google.maps.event.addListener(markerTwo, 'click', function(){
+		google.maps.event.addListener(markerTwo, 'click', function(){
 				winAlert.open(map, markerTwo);
-				navigator.vibrate(5000);
-			});
+				navigator.vibrate(5000, 5000, 1000, 5000, 1000);
+		});
 
 
 		var origin = {
