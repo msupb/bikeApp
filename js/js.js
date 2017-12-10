@@ -1,8 +1,6 @@
+//Loads vue resource as a dependency for sending get request
 Vue.use(VueResource);
-function test() {
-  console.log(a);
-  console.log(b);
-}
+//Creates new vue instance
 var owm = new Vue({
   el: '#owm',
   data: {
@@ -12,21 +10,19 @@ var owm = new Vue({
   },
   methods: {
     loadWeather: function() {
-          this.$http.get('http://api.openweathermap.org/data/2.5/find?q=' + this.city + this.apiKey).then((data) => {
-            this.weather.push(data);
-            console.log(this.weather);
-          });
-    },
-    testtest: function() {
-      alert(this.userInput);
+      //Sends get request to openweathermap and returns current weather data in callback function
+      this.$http.get('http://api.openweathermap.org/data/2.5/find?q=' + this.city + this.apiKey + '&units=metric').then((data) => {
+        this.weather.push(data);
+        console.log(this.weather);
+      });
     }
   },
-  mounted: function () {
+  mounted: function() {
     this.loadWeather();
   }
 });
-
-$("#menu-button").click(function(){
+//Hamburger menu functionality
+$("#menu-button").click(function() {
   $(this).toggleClass("active");
   $("#line-1").toggleClass("active");
   $("#line-2").toggleClass("active");

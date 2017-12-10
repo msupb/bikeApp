@@ -1,76 +1,91 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Biking application</title>
   <meta name="viewport" content="initial-scale=1.0">
   <meta charset="utf-8">
-  <script src="https://unpkg.com/vue"> </script>
+  <script src="https://unpkg.com/vue">
+  </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.2.0/vue-resource.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="css.css">
-  <link type="text/css" rel="stylesheet" media="screen and (min-device-width: 0px)" href="mobile.css" />
-  <link type="text/css" rel="stylesheet" media="screen and (min-width: 800px)" href="css.css" />
+  <link type="text/css" rel="stylesheet" media="screen and (min-device-width: 0px)" href="style/mobile.css" />
+  <link type="text/css" rel="stylesheet" media="screen and (min-width: 800px)" href="style/css.css" />
   <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 </head>
+
 <body>
   <div id="wrapper">
     <div id="topNavBar">
-    <div id="menu-button" style="z-index:2;">
-      <div id="line-1"></div>
-      <div id="line-2"></div>
-      <div id="line-3"></div>
+      <div id="menu-button" style="z-index:2;">
+        <div id="line-1"></div>
+        <div id="line-2"></div>
+        <div id="line-3"></div>
+      </div>
+      <div id="menu" style="z-index:1;">
+        <ul>
+          <li><img id="profile-img" src="img/Circle_Portrait_Karl.png"><br>Calle Ohlson<br> calle.ohlson@gmail.com
+            <div class="line"></div>
+          </li>
+          <li><img class="hamburger-img" src="img/hamburger_menu_Profile.png">My profile
+            <div class="line"></div>
+          </li>
+          <li><img class="hamburger-img" src="img/hamburger_menu_emission.png">CO2 Emission
+            <div class="line"></div>
+          </li>
+          <li><img class="hamburger-img" src="img/hamburger_menu_seetings.png">Settings
+            <div class="line"></div>
+          </li>
+          <li><img class="hamburger-img" src="img/hamburger_menu_log_out.png">Logout
+            <div class="line"></div>
+          </li>
+        </ul>
+      </div>
     </div>
-    <div id="menu" style="z-index:1;">
-      <ul>
-        <li>Test</li>
-        <li>Test</li>
-        <li>test</li>
-        <li>Test</li>
-        <li>Test</li>
-      </ul>
+    <div id="map" style="height:500px; width:100%;"></div>
+  </div>
+  <div class=".container" id="route-planner">
+    <div class=".container-fluid" id="searchRoute">
+      <div class=".container-fluid" id="loc-buttons">
+        <h2>Search Your Route </h2>
+        <button type="button" class="btn btn-primary" id="calc-route" onclick="initMap()">Submit route</button>
+      </div>
+      <div class=".container-fluid" id="saved-routes">
+        <h3> Saved Routes</h3>
+        <img class="favourites" src="img/home.png">
+        <img class="favourites" src="img/high-school.png">
+        <img class="favourites" src="img/couple.png">
+        <img class="favourites" src="img/like.png">
+      </div>
     </div>
-    </div>
-      <div id="map" style="height:500px; width:100%;"></div>
-    </div>
-    <div class=".container" id="route-planner">
-        <div class=".container-fluid" id="searchRoute">
-          <div class=".container-fluid" id="loc-buttons">
-            <h2>Search Your Route </h2>
-            <button type="button" class="btn btn-primary" id="calc-route" onclick="initMap()">Submit route</button>
-          </div>
-          <div class=".container-fluid" id="saved-routes">
-              <h3> Saved Routes</h3>
-              <img src="img/home.png">
-              <img src="img/high-school.png">
-              <img src="img/couple.png">
-              <img src="img/like.png">
-          </div>
+    <div class=".container-fluid" id="routeInfo">
+      <div class=".container-fluid" id="info-route">
+        <h2>Route Info</h2>
+        <h3> Report problem at your location</h3>
+        <button id="reportTraffic" class="btn btn-primary" v-on:click="loadWeather">Traffic Problem</button>
+        <button id="reportRoad" class="btn btn-primary" onclick="test()">Road Problem</button>
+      </div>
+      <div class=".container-fluid" id="owm">
+        <h2>Route Weather</h2>
+        <div id="weather-button">
+          <img id="weather-icon" src="img/Cloud.png" alt="sun and cloud image">
         </div>
-        <div class=".container-fluid" id="routeInfo">
-          <div class=".container-fluid" id="info-route">
-            <h2>Route Info</h2>
-            <h3> Report problem at your location</h3>
-            <button id="reportTraffic" class="btn btn-primary" v-on:click="loadWeather">Traffic Problem</button>
-            <button id="reportRoad" class="btn btn-primary" onclick="test()">Road Problem</button>
+        <form>
+          <div class=".container-fluid" class="form-group">
           </div>
-          <div class=".container-fluid" id="owm">
-            <h2>Route Weather</h2>
-            <div id="weather-button">
-              <img id="weather-icon" src="img/Cloud.png" alt="sun and cloud image">
-            </div>
-            <form>
-              <div class=".container-fluid" class="form-group">
-              </div>
-            </form>
-            <table class="table table-bordered">
-              <tbody>
-                <template v-for="item in weather">
+        </form>
+        <table class="table table-bordered">
+          <tbody>
+            <template v-for="item in weather">
                   <tr>
                     <td>Weather: {{ item.body.list[0].weather[0].main }}, {{ item.body.list[0].weather[0].description }}</td>
                   </tr>
                   <tr>
                     <td>Clouds: {{ item.body.list[0].clouds.all }}</td>
+                  </tr>
+                  <tr>
+                    <td>Temperature: {{ item.body.list[0].main.temp }} C</td>
                   </tr>
                   <tr>
                     <td>Wind speed: {{ item.body.list[0].wind.speed }}</td>
@@ -79,16 +94,16 @@
                     <td>Wind degree: {{ item.body.list[0].wind.deg }}</td>
                   </tr>
                 </template>
-              </tbody>
-            </table>
-          </div>
-        </div>
+          </tbody>
+        </table>
+      </div>
     </div>
+  </div>
   </div>
   <script type="text/javascript" src="js/map.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAi_n5um0kIDTiFIjB4rfZbkJcy2soICuM&callback=initMap" async defer></script>
   <script type="text/javascript" src="js/js.js"></script>
   <script type="text/javascript" src="cordova.js"></script>
-  <script type="text/javascript" src="js/vibrate.js"></script>
 </body>
+
 </html>
