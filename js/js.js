@@ -4,7 +4,7 @@ Vue.use(VueResource);
 var owm = new Vue({
   el: '#owm',
   data: {
-    apiKey: "&type=like&appid=766b78c39446a8fa6313c3b7b2063ade",
+    apiKey: [YOUR API KEY],
     city: "Jonkoping",
     weather: []
   },
